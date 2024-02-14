@@ -13,3 +13,6 @@ $VLAN = "LAN_24"
 # Crea la máquina virtual
 New-VM -Name $VMName -Datastore $DatastoreName -DiskGB 10 -MemoryGB 1 -NetworkName $VLAN -CD -ISOPath $DatastorePath
 GuestId "other3xLinux64Guest" -NumCpu 1 -NetworkName $VLAN -DiskStorageFormat Thin
+
+# Montar arxiu ISO
+Set-CDDrive -VM $VMName -IsoPath $DatastorePath -StartConnected -Confirm:$false
