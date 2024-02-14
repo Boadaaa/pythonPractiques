@@ -11,10 +11,12 @@ $DatastoreName = "DATASTORE_GRAN"
 $VLAN = "LAN_24"
 
 # Crea la máquina virtual
-New-VM -Name $VMName -Datastore $DatastoreName -DiskGB 10 -MemoryGB 1 -NetworkName $VLAN -CD -HostPath $DatastorePath -GuestId "other3xLinux64Guest" -NumCpu 1 -DiskStorageFormat Thin
+$Datastore = Get-Datastore -Name $DatastoreName
+New-VM -Name $VMName -Datastore $Datastore -MemoryGB 1 -CD -GuestId "other3xLinux64Guest" -NumCpu 1 -DiskStorageFormat Thin
 
 # Montar archivo ISO
-Set-CDDrive -VM $VMName -IsoPath $DatastorePath -StartConnected:$true -Confirm:$false
+$VM = Get-VM -Name $VMName
+Set-CDDrive -CD (Get-CDDrive -VM $VM) -IsoPath $DatastorePath -StartConnected:$true -Confirm:$false
 
 # Desconecta del servidor ESXi
 Disconnect-VIServer -Server 172.24.69.102 -Confirm:$false
