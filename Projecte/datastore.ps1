@@ -12,7 +12,7 @@ $VLAN = "LAN24"
 
 # Crea la máquina virtual
 $Datastore = Get-Datastore -Name $DatastoreName
-New-VM -Name $VMName -Datastore $Datastore -MemoryGB 1 -CD -GuestId "other3xLinux64Guest" -NumCpu 1 -DiskStorageFormat Thin
+New-VM -Name $VMName -Datastore $Datastore -MemoryGB 1 -CD -GuestId "other3xLinux64Guest" -NumCpu 1 -DiskStorageFormat Thin | Select-Object -Property PowerState, Guest, NumCpu, CoresPerSocket, MemoryMB, VMHost, Name
 
 # Montar archivo ISO
 $VM = Get-VM -Name $VMName
