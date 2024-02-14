@@ -8,7 +8,7 @@ Connect-VIServer -Server 172.24.69.102 -User root -Password Patata123*
 $VMName = "AlpineMaquina"
 $DatastorePath = "/vmfs/volumes/659eda0e-7a5a0587-c1a7-9c7bef2a7d69/ISOS/alpine-standard-3.19.1-aarch64.iso"
 $DatastoreName = "DATASTORE_GRAN"
-$VLAN = "LAN_24"
+$VLAN = "LAN24"
 
 # Crea la máquina virtual
 $Datastore = Get-Datastore -Name $DatastoreName
