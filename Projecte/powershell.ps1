@@ -7,3 +7,4 @@ Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
 
 Get-VM | Select-Object Name, PowerState, NumCpu, MemoryMB, Version, Guest
 
+cd C:\Users\marcb\Desktop\bash\python\Projecte\
