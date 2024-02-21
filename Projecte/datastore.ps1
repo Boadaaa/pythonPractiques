@@ -21,6 +21,13 @@ if (Test-Path $DatastorePath) {
     Set-CDDrive -CD (Get-CDDrive -VM $VM) -IsoPath $DatastorePath -StartConnected:$true -Confirm:$false
 }
 
+# Nombre de la nueva máquina virtual
+$ReplicaVMName = "AlpineMaquina2"
+
+# Obtén la máquina virtual original
+$OriginalVM = Get-VM -Name $VMName
+
+
 # Desconecta del servidor ESXi
 Disconnect-VIServer -Server 172.24.69.102 -Confirm:$false
 
