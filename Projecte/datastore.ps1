@@ -13,8 +13,8 @@ $VLAN = "LAN24"
 # Nombre de la nueva máquina virtual
 $ReplicaVMName = "AlpineMaquina2"
 
-#Crea la máquina virtual y muestra las propiedades seleccionadas
-$VM = New-VM -Name $VMName -Datastore (Get-Datastore -Name $DatastoreName) -MemoryGB 1 -CD -GuestId "other5xLinux64Guest" -NumCpu 1 -DiskStorageFormat Thin | Select-Object -Property PowerState, Guest, NumCpu, CoresPerSocket, MemoryMB, VMHost, Name
+# Crea la máquina virtual y muestra las propiedades seleccionadas
+$VM = New-VM -Name $VMName -Datastore (Get-Datastore -Name $DatastoreName) -MemoryGB 1 -NumCpu 1 -DiskStorageFormat Thin | Select-Object -Property PowerState, Guest, NumCpu, CoresPerSocket, MemoryMB, VMHost, Name
 
 # Montar archivo ISO si la ruta es válida
 if (Test-Path $DatastorePath) {
@@ -32,4 +32,3 @@ $ReplicaVM = New-VM -VM $OriginalVM -Name $ReplicaVMName -Location $OriginalVM.V
 
 # Desconecta del servidor ESXi
 Disconnect-VIServer -Server 172.24.69.102 -Confirm:$false
-
