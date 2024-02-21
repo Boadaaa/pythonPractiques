@@ -27,6 +27,8 @@ $ReplicaVMName = "AlpineMaquina2"
 # Obtén la máquina virtual original
 $OriginalVM = Get-VM -Name $VMName
 
+# Crea una réplica de la máquina virtual
+$ReplicaVM = New-VM -VM $OriginalVM -Name $ReplicaVMName -Location $OriginalVM.VMHost.Parent -RunAsync
 
 # Desconecta del servidor ESXi
 Disconnect-VIServer -Server 172.24.69.102 -Confirm:$false
