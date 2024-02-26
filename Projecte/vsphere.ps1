@@ -11,4 +11,4 @@ $templateVM = Get-VM -Name $destinationTemplate
 Set-VM -VM $templateVM -Template $true
 
 # Desconectarse del servidor vSphere
-Disconnect-VIServer -Server <Dirección_IP_o_nombre_del_servidor> -Confirm:$false
+Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
