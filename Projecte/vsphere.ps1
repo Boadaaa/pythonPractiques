@@ -8,3 +8,4 @@ New-VM -VM $sourceVM -Name $destinationTemplate -ResourcePool (Get-ResourcePool)
 
 # Convertir la máquina virtual clonada en una plantilla
 $templateVM = Get-VM -Name $destinationTemplate
+Set-VM -VM $templateVM -Template $true
