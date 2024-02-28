@@ -3,13 +3,11 @@ Connect-VIServer -Server 172.24.69.12 -User administrator@vsphere.local -Passwor
 
 # Define los detalles de la plantilla y del host
 $templateName = 'AlpineClonar'  
-$esxName = '172.24.69.12'  
-$dsName = 'LOCAL'  
+$newVMName = "AlpineMain"
+$folderName = "Templates"
 
-# Obtiene la plantilla, el datastore y el host
-$template = Get-Template -Name $templateName
-$ds = Get-Datastore -Name $dsName
-$esx = Get-VMHost -Name $esxName
+# Obtener la plantilla
+$template = Get-Template -Name $templateName -Location (Get-Folder -Name $folderName)
 
 # Crea la nueva máquina virtual a partir de la plantilla
 $vm = New-VM -Template $template -Name 'AlpineMain' -VMHost $esx -Datastore $ds -DiskStorageFormat Thin
@@ -22,8 +20,3 @@ $vm | Start-VM -Confirm:$false
 
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
-
-
-
-
-
