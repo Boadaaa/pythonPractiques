@@ -8,6 +8,7 @@ $dsName = 'LOCAL'
 
 # Obtiene la plantilla, el datastore y el host
 $template = Get-Template -Name $templateName
+$ds = Get-Datastore -Name $dsName
 
 
 # Desconectarse del servidor vSphere
