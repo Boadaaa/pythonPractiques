@@ -6,6 +6,9 @@ $templateName = 'AlpineClonar'
 $esxName = '172.24.69.12'  
 $dsName = 'LOCAL'  
 
+# Obtiene la plantilla, el datastore y el host
+$template = Get-Template -Name $templateName
+
 
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
