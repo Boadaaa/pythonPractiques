@@ -11,6 +11,8 @@ $template = Get-Template -Name $templateName
 $ds = Get-Datastore -Name $dsName
 $esx = Get-VMHost -Name $esxName
 
+# Crea la nueva máquina virtual a partir de la plantilla
+$vm = New-VM -Template $template -Name 'AlpineMain' -VMHost $esx -Datastore $ds -DiskStorageFormat Thin
 
 
 # Desconectarse del servidor vSphere
