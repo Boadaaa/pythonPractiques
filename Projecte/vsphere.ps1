@@ -15,9 +15,10 @@ $vmHost = Get-VMHost | Select-Object -First 1
 
 # Crear la nueva máquina virtual
 $vm = New-VM -Template $template -Name 
+$newVMName -VMHost $vmHost -Location (Get-Folder -Name $folderName)
 
-# Inicia la nueva máquina virtual
-$vm | Start-VM -Confirm:$false
+# Configurar la nueva máquina virtual
+$vm | Set-VM -NumCpu 2 -MemoryGB 4 -Confirm:$false
 
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
