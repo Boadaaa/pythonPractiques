@@ -20,5 +20,8 @@ $newVMName -VMHost $vmHost -Location (Get-Folder -Name $folderName)
 # Configurar la nueva máquina virtual
 $vm | Set-VM -NumCpu 2 -MemoryGB 4 -Confirm:$false
 
+# Iniciar la nueva máquina virtual
+$vm | Start-VM -Confirm:$false
+
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
