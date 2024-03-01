@@ -9,11 +9,12 @@ $folderName = "Templates"
 # Obtener la plantilla
 $template = Get-Template -Name $templateName -Location (Get-Folder -Name $folderName)
 
-# Crea la nueva máquina virtual a partir de la plantilla
-$vm = New-VM -Template $template -Name 'AlpineMain' -VMHost $esx -Datastore $ds -DiskStorageFormat Thin
+# Obtener el host donde se debe alojar la nueva máquina virtual
+# En este caso, estoy obteniendo el primer host disponible. Puedes ajustarlo según tus necesidades.
+$vmHost = Get-VMHost | Select-Object -First 1
 
-# Configura la CPU y la memoria de la nueva máquina virtual
-$vm | Set-VM -NumCpu 2 -MemoryGB 4 -Confirm:$false
+# Crear la nueva máquina virtual
+$vm = New-VM -Template $template -Name 
 
 # Inicia la nueva máquina virtual
 $vm | Start-VM -Confirm:$false
