@@ -23,7 +23,7 @@ $vm | Set-VM -NumCpu 2 -MemoryGB 4 -Confirm:$false
 $vm | Start-VM -Confirm:$false
 
 # Mostrar los campos específicos
-$vm | Select-Object Guest, NumCpu, MemoryMB, VMHost, GuestId, Name
+$vm | Select-Object Guest, NumCpu, MemoryMB, VMHost, GuestId, Name, PowerState
 
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
