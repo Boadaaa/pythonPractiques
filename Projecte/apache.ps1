@@ -4,12 +4,20 @@ Connect-VIServer -Server 172.24.69.12 -User administrator@vsphere.local -Passwor
 # Obtener la máquina virtual
 $vm = Get-VM -Name AlpineMain
 
+# Establecer la dirección IP y el puerto SSH de la máquina virtual
+$sshAddress = "172.24.69.222"
+$sshPort = 22
+
 # Establecer el nombre de usuario y la contraseña para SSH
 $username = "troll"
 $password = "Patata123"
 
-# Conectar por SSH a la máquina virtual por su dirección IP
-$session = New-SSHSession -ComputerName 172.24.69.222 -Credential (New-Object System.Management.Automation.PSCredential($username, (ConvertTo-SecureString $password -AsPlainText -Force)))
+# Crear un objeto PSCredential para la autenticación SSH
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+$credential = New-Object System.Management.Automation.PSCredential ($username, $securePassword)
+
+# Conectar por SSH a la máquina virtual
+$session = New-SSHSession -ComputerName $sshAddress -Credential $credential -Port $sshPort
 
 # Ejecutar un comando para verificar el estado del servicio de Apache
 $result = Invoke-SSHCommand -SessionId $session.SessionId -Command "service apache2 status"
@@ -26,4 +34,5 @@ Remove-SSHSession -SessionId $session.SessionId
 
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
+
 
