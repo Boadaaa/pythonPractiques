@@ -8,8 +8,8 @@ $vm = Get-VM -Name AlpineMain
 $username = "troll"
 $password = "Patata123"
 
-# Conectar por SSH a la máquina virtual
-$session = New-SSHSession -ComputerName $vm.Name -Credential (New-Object System.Management.Automation.PSCredential($username, (ConvertTo-SecureString $password -AsPlainText -Force)))
+# Conectar por SSH a la máquina virtual por su dirección IP
+$session = New-SSHSession -ComputerName 172.24.69.222 -Credential (New-Object System.Management.Automation.PSCredential($username, (ConvertTo-SecureString $password -AsPlainText -Force)))
 
 # Ejecutar un comando para verificar el estado del servicio de Apache
 $result = Invoke-SSHCommand -SessionId $session.SessionId -Command "service apache2 status"
@@ -26,3 +26,4 @@ Remove-SSHSession -SessionId $session.SessionId
 
 # Desconectarse del servidor vSphere
 Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
+
