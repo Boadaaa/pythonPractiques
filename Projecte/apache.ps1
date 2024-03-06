@@ -1,4 +1,3 @@
-
 # Conectarse al servidor vSphere
 Connect-VIServer -Server 172.24.69.12 -User administrator@vsphere.local -Password Patata123*
 
@@ -24,8 +23,15 @@ if (CheckApacheStatus) {
     Write-Host "El servei Apache si funca en la maquina virtual."
 } else {
     Write-Host "El servei Apache no funca en la maquina virtual.Eliminant aquesta merda..."
-    # Obtener la máquina virtual y eliminarla
+    # Obtener la máquina virtual
     $vm = Get-VM -Name AlpineMain
+    
+    # Detener la máquina virtual si está encendida
+    if ($vm.PowerState -eq "PoweredOn") {
+        Stop-VM -VM $vm -Confirm:$false
+    }
+
+    # Eliminar la máquina virtual
     Remove-VM -VM $vm -Confirm:$false
 }
 
