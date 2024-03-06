@@ -14,3 +14,10 @@ $session = New-SSHSession -ComputerName $vm.Name -Credential (New-Object System.
 # Ejecutar un comando para verificar el estado del servicio de Apache
 $result = Invoke-SSHCommand -SessionId $session.SessionId -Command "service apache2 status"
 
+# Mostrar el resultado
+if ($result.Output -match "active") {
+    Write-Host "El servicio Apache está funcionando en la máquina virtual."
+} else {
+    Write-Host "El servicio Apache no está funcionando en la máquina virtual."
+}
+
