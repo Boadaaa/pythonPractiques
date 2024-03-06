@@ -21,3 +21,8 @@ if ($result.Output -match "active") {
     Write-Host "El servicio Apache no está funcionando en la máquina virtual."
 }
 
+# Cerrar la sesión SSH
+Remove-SSHSession -SessionId $session.SessionId
+
+# Desconectarse del servidor vSphere
+Disconnect-VIServer -Server 172.24.69.12 -Confirm:$false
