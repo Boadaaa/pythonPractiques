@@ -11,3 +11,6 @@ $password = "Patata123"
 # Conectar por SSH a la máquina virtual
 $session = New-SSHSession -ComputerName $vm.Name -Credential (New-Object System.Management.Automation.PSCredential($username, (ConvertTo-SecureString $password -AsPlainText -Force)))
 
+# Ejecutar un comando para verificar el estado del servicio de Apache
+$result = Invoke-SSHCommand -SessionId $session.SessionId -Command "service apache2 status"
+
