@@ -8,4 +8,6 @@ $vm = Get-VM -Name AlpineMain
 $username = "troll"
 $password = "Patata123"
 
+# Conectar por SSH a la máquina virtual
+$session = New-SSHSession -ComputerName $vm.Name -Credential (New-Object System.Management.Automation.PSCredential($username, (ConvertTo-SecureString $password -AsPlainText -Force)))
 
