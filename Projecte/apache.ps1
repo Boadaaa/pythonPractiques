@@ -6,11 +6,10 @@ $vm = Get-VM -Name AlpineMain
 
 # Establecer la dirección IP y el puerto SSH de la máquina virtual
 $sshAddress = "172.24.69.222"
-$sshPort = 22
 
 # Establecer el nombre de usuario y la contraseña para SSH
 $username = "troll"
-$password = "Patata123"
+$password = "Patata123*"
 
 # Crear un objeto PSCredential para la autenticación SSH
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
